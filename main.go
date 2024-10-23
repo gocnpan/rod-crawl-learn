@@ -1,6 +1,8 @@
 package main
 
 import (
+	"runtime/debug"
+
 	"github.com/go-rod/rod"
 )
 
@@ -15,19 +17,25 @@ func init() {
 	if err != nil {
 		panic("创建data文件夹失败")
 	}
+	RunSQLite()
 }
 
 func main() {
 	// 初始化浏览器连接
 	browser = rod.New().MustConnect()
 	defer func() {
+		stack := string(debug.Stack())
 		if r := recover(); r != nil {
-			log.Warnf("panic: %v", r)
+			log.Warnf("panic: %v, stack: %s", r, stack)
 		}
 		browser.MustClose()
 	}()
-	// defer browser.MustClose()
 
-	// crawlHome()
-	savePage()
+	// 爬取专栏href
+	crawlColumns()
+	sleepMin5()
+	// 爬取课程href
+	crawlColCourUrls()
+	// 爬取课程内容
+	crawlCoursePages()
 }

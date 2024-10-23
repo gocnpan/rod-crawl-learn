@@ -24,7 +24,6 @@ func RunSQLite() *gorm.DB {
 	file := filepath.Join(baseDir, "data.db")
 	dsn := fmt.Sprintf("file:%s", file)
 
-
 	var err error
 	db, err = gorm.Open(sqlite.Open(dsn), &gorm.Config{Logger: NewGormLogger(log, 200*time.Millisecond)})
 	if err != nil {
@@ -39,5 +38,9 @@ func RunSQLite() *gorm.DB {
 
 func autoMigrate() {
 	db.AutoMigrate(
+		&TableColumn{},
+		&TableCourse{},
 	)
 }
+
+

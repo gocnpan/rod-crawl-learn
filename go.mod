@@ -4,6 +4,7 @@ go 1.22.3
 
 require (
 	github.com/go-rod/rod v0.116.2
+	github.com/otiai10/copy v1.14.0
 	go.uber.org/zap v1.27.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gorm.io/driver/sqlite v1.5.6
@@ -20,5 +21,7 @@ require (
 	github.com/ysmood/gson v0.7.3 // indirect
 	github.com/ysmood/leakless v0.9.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
